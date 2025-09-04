@@ -1,4 +1,3 @@
-// MainActivity.kt
 package stjd.poketest
 
 import android.os.Bundle

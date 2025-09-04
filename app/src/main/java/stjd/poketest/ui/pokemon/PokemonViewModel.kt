@@ -17,17 +17,16 @@ class PokemonViewModel(
     val pokemonList = _pokemonList.asStateFlow()
 
     init {
-            fetchPokemonList()
+        fetchPokemonList()
     }
 
     private fun fetchPokemonList() {
         viewModelScope.launch {
             try {
-                val response = pokemonRepository.getPokemons()
-                _pokemonList.value = response
-            } catch (e: Exception) {
-                Log.e("PokemonViewModel", "Failed to load pokemons", e)
-                _pokemonList.value = emptyList() // or keep a separate error state
+                _pokemonList.value = pokemonRepository.getPokemons()
+            } catch (exception: Exception) {
+                Log.e("PokemonViewModel", "Failed to load pokemons", exception)
+                _pokemonList.value = emptyList() // todo deal with error state
             }
         }
     }
